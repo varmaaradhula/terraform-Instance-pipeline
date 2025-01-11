@@ -9,26 +9,5 @@ resource "aws_instance" "CafeShop" {
     Name = "CafeBarista"
   }
 
-  # Copies the myapp.conf file to /etc/myapp.conf
-
-  provisioner "file" {
-    source      = "web.sh"
-    destination = "/tmp/web.sh"
-  }
-
-  connection {
-    type        = "ssh"
-    user        = var.webuser
-    private_key = file("instancekey")
-    host        = self.public_ip
-  }
-
-  provisioner "remote-exec" {
-    inline = [
-      "chmod +x /tmp/web.sh",
-      "sudo /tmp/web.sh"
-    ]
-  }
-
 
 }
