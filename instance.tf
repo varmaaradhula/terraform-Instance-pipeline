@@ -6,7 +6,7 @@ resource "aws_instance" "CafeShop" {
   availability_zone      = var.avzone
 
   tags = {
-    Name = "CafeBarista007"
+    Name = "CafeBarista009"
   }
 
 
