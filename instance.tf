@@ -8,6 +8,9 @@ resource "aws_instance" "CafeShop" {
   tags = {
     Name = "CafeBarista009"
   }
+}
 
-
+output "instance_public_ip" {
+  value = aws_instance.CafeShop.public_ip
+  description = "The public IP address of the instance."
 }

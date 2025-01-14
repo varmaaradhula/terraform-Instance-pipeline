@@ -46,6 +46,23 @@ pipeline{
             }
         }
 
+        stage('Get Instance Public IP') {
+            steps {
+                echo 'Fetching public IP of the instance...'
+                script {
+                    // Fetch public IP from Terraform output
+                    def publicIp = sh(
+                        script: "terraform output -raw instance_public_ip",
+                        returnStdout: true
+                    ).trim()
+                    echo "Public IP Address of the Instance: ${publicIp}"
+
+                    // Write the public IP to a file
+                    writeFile file: 'instance_public_ip.txt', text: publicIp
+                }
+            }
+        }
+
     }
 
     post {
